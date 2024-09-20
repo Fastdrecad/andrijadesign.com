@@ -1,0 +1,14 @@
+# Allow all bots to access everything
+User-agent: *
+Allow: /
+
+# Disallow access to admin pages (if any)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+
+# Disallow indexing of 404 page
+Disallow: /404/
+
+# Sitemap for your website
+Sitemap: https://www.andrijadesign.com/sitemap.xml

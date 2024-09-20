@@ -1,0 +1,26 @@
+// Import core styles
+@import "../utils/variables";
+@import "../utils/mixins";
+
+// layout
+@import "../layout/layout";
+@import "../layout/footer";
+
+// components
+@import "../components/header";
+@import "../components/about";
+@import "../components/backdrop";
+@import "../components/contact";
+@import "../components/navbar";
+@import "../components/other-projects";
+@import "../components/preloader";
+@import "../components/projects";
+@import "../components/rounded-button";
+@import "../components/sidebar";
+@import "../components/links";
+@import "../components/skills";
+
+// pages
+@import "../pages/archive";
+@import "../pages/home";
+@import "../pages/not-found";

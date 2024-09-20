@@ -1,6 +1,7 @@
-import { useCallback, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { navLinks } from '../config';
+import { useCallback, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { navLinks } from "../config";
 
 export const useNavigationLinks = () => {
   return useMemo(() => navLinks, []);
@@ -12,17 +13,17 @@ export const useHandleLinkClick = (onClose) => {
   return useCallback(
     (event, item) => {
       event.preventDefault();
-      if (item === 'home') {
+      if (item === "home") {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
       } else {
         const element = document.getElementById(item);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          navigate('/');
+          navigate("/");
           window.scrollTo(0, 0);
         }
       }

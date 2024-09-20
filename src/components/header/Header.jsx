@@ -1,20 +1,23 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect, useRef } from 'react';
-import { FaArrowRight } from 'react-icons/fa6';
-import { heroImg } from '../../utils';
-import { GlobeIcon, Location } from '../common/Icon';
-import './header.scss';
+import { useEffect, useRef } from "react";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import { FaArrowRight } from "react-icons/fa6";
+
+import GlobeIcon from "../../assets/icons/GlobeIcon";
+import { heroImg } from "../../assets";
+import { LocationIcon } from "../../assets/icons";
 
 const Header = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start start', 'end start']
+    offset: ["start start", "end start"]
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const firstP = useRef(null);
   const secondP = useRef(null);
@@ -26,7 +29,7 @@ const Header = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     if (!slider.current) {
-      console.warn('Slider element not found!');
+      console.warn("Slider element not found!");
       return;
     }
 
@@ -40,7 +43,7 @@ const Header = () => {
         scrub: 0.05,
         onUpdate: (e) => (direction = e.direction * -1)
       },
-      x: '-=300px'
+      x: "-=300px"
     });
 
     function animation() {
@@ -68,66 +71,59 @@ const Header = () => {
   }, []);
 
   return (
-    <div className='section home-header' ref={ref}>
-      {/* personal image */}
+    <div className="hero-section" ref={ref}>
+      {/* Personal Image */}
       <motion.div
-        className='overlay personal-image no-select once-in'
+        className="overlay hero-section__personal-image no-select once-in"
         style={{ y: backgroundY }}
       >
-        <img src={heroImg} alt='personal-image' />
+        <img src={heroImg} alt="Andrija Mićunović Personal Image" />
       </motion.div>
-      <div className='cv-container'>
-        <a
-          className='cv-button'
-          href='/resume.pdf'
-          rel='noopener noreferrer'
-          target='_blank'
-        >
-          CV
-        </a>
-      </div>
-      {/* hanger */}
-      <div className='overlay get-height once-in once-in-secondary'>
-        <div className='hanger'>
+
+      {/* Location Information */}
+      <div className="overlay get-height once-in once-in-secondary">
+        {/* <div className="hanger"> */}
+        <div className="hero-section__location-info">
           <p>
             <span>Located</span>
             <span>in</span>
             <span>Serbia</span>
           </p>
-          <Location />
-          <div className='digital-ball'>
-            <div className='overlay'></div>
-            <div className='globe'>
+          <LocationIcon />
+          <div className="hero-section__globe-container">
+            <div className="hero-section__globe-overlay"></div>
+            <div className="hero-section__globe">
               <GlobeIcon />
             </div>
           </div>
         </div>
       </div>
 
-      {/* title  */}
-      <div className='wrapper'>
-        <div className='text-container'>
-          <div className='row-content'>
-            <div className='flexCol'>
-              <div className='headerAboveH4'>
-                <div className='arrow'>
+      {/* Title Section */}
+      <div className="hero-section__content-wrapper">
+        <div className="hero-section__text-container">
+          <div className="hero-section__text-row">
+            <div className="hero-section__intro-text">
+              <div className="headerAboveH4">
+                <div className="hero-section__arrow">
                   <FaArrowRight />
                 </div>
               </div>
-              {/* <h1>Hi, my name is</h1> */}
               <h1>Andrija Mićunović</h1>
-              <span>Full Stack Developer</span>
-              <h3>I build things for the web.</h3>
+              <p className="hero-section__job-title">Full Stack Developer</p>
+              <p className="hero-section__tagline">
+                I build things for the web.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* big name animation */}
-      <div className='big-name'>
-        <div className='name-h1' ref={slider}>
-          <h1 ref={firstP}>Andrija Mićunović — Andrija Mićunović —</h1>
-          <h1 ref={secondP}>Andrija Mićunović — Andrija Mićunović —</h1>
+      {/* Big Name Animation */}
+      <div className="hero-section__big-name-animation">
+        <div className="hero-section__big-name-slider" ref={slider}>
+          <p ref={firstP}>Andrija Mićunović — Andrija Mićunović —</p>
+          <p ref={secondP}>Andrija Mićunović — Andrija Mićunović —</p>
         </div>
       </div>
     </div>

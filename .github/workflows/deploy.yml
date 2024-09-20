@@ -20,8 +20,9 @@ jobs:
 
       - name: Deploy to VPS
         run: |
-          ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_IP }} '
-          cd /var/www/andrija-design &&
-          git pull origin master &&
-          npm install &&
-          npm run build &&
+          ssh -o StrictHostKeyChecking=no root@${{ secrets.VPS_IP }} << EOF
+            cd /var/www/andrija-design
+            git pull origin master
+            npm install
+            npm run build
+          EOF

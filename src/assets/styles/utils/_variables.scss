@@ -1,0 +1,29 @@
+$gap-padding: clamp(1.5em, 4vw, 2.5em);
+$container-padding: clamp(1.5em, 6vw, 8em);
+$section-padding: clamp(5em, 21vh, 12em);
+
+// $color-blue: #1d5bd7;
+$color-blue: #00d9ff;
+$color-gray: #999d9e;
+$color-gray-line: #3f3f3f;
+$color-lightgray: #c9cbcd;
+$color-black: #161616;
+$color-dark: #1c1d20;
+$color-dark-dark: #141517;
+$color-white: white;
+
+/* Font Families */
+$font-body: "DM Sans", sans-serif;
+
+/* Font Sizes */
+$font-size-body: clamp(16px, 1.2vw, 19px);
+
+$text-color: black;
+
+$vh: 5.5px;
+
+$phone: 576px;
+$tabPort: 768px;
+$tabLand: 1024px;
+$desktop: 1200px;
+$bigDesktop: 1440px;

@@ -1,40 +1,41 @@
-import { FaLinkedinIn, FaGithub, FaYoutube, FaFile } from 'react-icons/fa6';
-import { motion } from 'framer-motion';
-import Magnetic from '../../magnetic/Magnetic';
-import './links.scss';
+import { motion } from "framer-motion";
+
+import { FaLinkedinIn, FaGithub, FaYoutube, FaFile } from "react-icons/fa6";
+
+import Magnetic from "../../Magnetic/Magnetic";
 
 const socialLinks = [
   {
     id: 1,
-    href: 'https://www.linkedin.com/in/andrija-micunovic/',
-    ariaLabel: 'Visit Andrija’s LinkedIn profile',
-    rel: 'noopener noreferrer',
+    href: "https://www.linkedin.com/in/andrija-micunovic/",
+    ariaLabel: "Visit Andrija’s LinkedIn profile",
+    rel: "noopener noreferrer",
     icon: <FaLinkedinIn />,
-    target: '_blank'
+    target: "_blank"
   },
   {
     id: 2,
-    href: 'https://github.com/Fastdrecad',
-    ariaLabel: 'Visit Andrija’s GitHub',
-    rel: 'noopener noreferrer',
+    href: "https://github.com/Fastdrecad",
+    ariaLabel: "Visit Andrija’s GitHub",
+    rel: "noopener noreferrer",
     icon: <FaGithub />,
-    target: '_blank'
+    target: "_blank"
   },
   {
     id: 3,
-    href: 'https://www.youtube.com/channel/UCAz40UjYzoUVc_MZurNI0yg',
-    ariaLabel: 'Visit Andrija’s YouTube channel',
-    rel: 'noopener noreferrer',
+    href: "https://www.youtube.com/channel/UCAz40UjYzoUVc_MZurNI0yg",
+    ariaLabel: "Visit Andrija’s YouTube channel",
+    rel: "noopener noreferrer",
     icon: <FaYoutube />,
-    target: '_blank'
+    target: "_blank"
   },
   {
     id: 4,
-    href: 'resume.pdf',
-    ariaLabel: 'Download Andrija’s resume',
-    rel: 'noopener noreferrer',
+    href: "resume.pdf",
+    ariaLabel: "Download Andrija’s resume",
+    rel: "noopener noreferrer",
     icon: <FaFile />,
-    target: '_blank'
+    target: "_blank"
   }
 ];
 
@@ -51,10 +52,10 @@ const itemVariants = {
 
 const Links = () => {
   return (
-    <motion.div className='socialRow' variants={itemVariants}>
-      <div className='socials'>
-        <h5>Links</h5>
-        <div className='stripe'></div>
+    <motion.div className="socialRow" variants={itemVariants}>
+      <div className="socials">
+        <p>Links</p>
+        <div className="stripe"></div>
         <ul>
           {socialLinks.map((item) => (
             <Magnetic key={item.id}>

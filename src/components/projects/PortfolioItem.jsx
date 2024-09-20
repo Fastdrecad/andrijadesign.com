@@ -1,6 +1,7 @@
 import { useRef } from "react";
-import { laptopImg } from "../../utils";
-import { ExternalIcon, GitHubIcon } from "../common/Icon";
+
+import { laptopImg } from "../../assets";
+import { ExternalIcon, GitHubIcon } from "../../assets/icons";
 
 const PortfolioItem = ({ item, setModal, index }) => {
   const container = useRef(null);

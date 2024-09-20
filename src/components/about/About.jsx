@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { GlobeIcon } from "../common/Icon";
-import RoundedButton from "../rounded-button/RoundedButton";
-import "./about.scss";
+
+import RoundedButton from "../RoundedButton/RoundedButton";
+import GlobeIcon from "../../assets/icons/GlobeIcon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,7 +89,7 @@ const About = () => {
         <div className="about">
           <div className="row-content">
             <div className="flex-col">
-              <h4 ref={description} className="span-lines">
+              <h3 ref={description} className="span-lines">
                 {phrase1.split(" ").map((word, i) => {
                   return (
                     <span className="span-line" key={i}>
@@ -105,7 +105,7 @@ const About = () => {
                     </span>
                   );
                 })}
-              </h4>
+              </h3>
             </div>
             <div className="flex-col">
               <p ref={textRef}>
@@ -209,18 +209,7 @@ const About = () => {
                       target="_blank"
                     >
                       <RoundedButton customStyle={circleStyle}>
-                        <span
-                          style={{
-                            padding: "0",
-                            minWidth: "10em",
-                            textAlign: "center",
-                            fontSize: "1em",
-                            display: "inline-block",
-                            color: "white"
-                          }}
-                        >
-                          Résumé
-                        </span>
+                        <span className="btn-text">Résumé</span>
                       </RoundedButton>
                     </a>
                   </div>

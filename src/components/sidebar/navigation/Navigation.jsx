@@ -1,7 +1,10 @@
-import { motion } from "framer-motion";
-import { navLinks } from "../../../config";
-import { useSidebar } from "../../../context/useSidebar";
 import { useNavigate } from "react-router-dom";
+
+import { motion } from "framer-motion";
+
+import { useSidebar } from "../../../context/useSidebar";
+
+import { navLinks } from "../../../data/navLinks";
 
 const variants = {
   open: {

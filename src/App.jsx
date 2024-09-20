@@ -1,13 +1,16 @@
-import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+
+import { BrowserRouter } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
+
 import { useSidebar } from "./context/useSidebar";
-import RoutesConfig from "./routes/routes";
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
-import Preloader from "./components/preloader/preloader";
-import "./app.scss";
+
+import Router from "./routes/Router";
+
+import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Preloader from "./components/Preloader/Preloader";
 
 const App = () => {
   const { isSidebarOpen } = useSidebar();
@@ -45,14 +48,14 @@ const App = () => {
 
   return (
     <main id="layout">
-      <Router>
+      <BrowserRouter>
         <AnimatePresence mode="wait">
           {loaded && <Preloader active={loaded} setActive={setLoaded} />}
         </AnimatePresence>
         <Navbar loaded={loaded} setLoaded={setLoaded} />
-        <RoutesConfig loaded={loaded} setLoaded={setLoaded} />
+        <Router loaded={loaded} setLoaded={setLoaded} />
         <Footer />
-      </Router>
+      </BrowserRouter>
     </main>
   );
 };

@@ -1,11 +1,12 @@
+import { useEffect, useRef, useState } from "react";
+
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
-import { projects } from "../../config";
+
 import PortfolioItem from "./PortfolioItem";
 import Skills from "./Skills";
-import "./projects.scss";
+import { projects } from "../../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 

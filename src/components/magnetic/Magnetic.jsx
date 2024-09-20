@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+import React, { useRef, useEffect } from "react";
+import { gsap } from "gsap";
 
 const Magnetic = ({ children }) => {
   const ref = useRef(null);
@@ -21,7 +21,7 @@ const Magnetic = ({ children }) => {
           x: x * 0.4,
           y: y * 0.4,
           scale: 1.1,
-          ease: 'power2.out'
+          ease: "power2.out"
         });
       } else {
         gsap.to(element, {
@@ -29,7 +29,7 @@ const Magnetic = ({ children }) => {
           x: 0,
           y: 0,
           scale: 1,
-          ease: 'power2.out'
+          ease: "power2.out"
         });
       }
     };
@@ -40,16 +40,16 @@ const Magnetic = ({ children }) => {
         x: 0,
         y: 0,
         scale: 1,
-        ease: 'power2.out'
+        ease: "power2.out"
       });
     };
 
-    element.addEventListener('mousemove', onMouseMove);
-    element.addEventListener('mouseleave', onMouseLeave);
+    element.addEventListener("mousemove", onMouseMove);
+    element.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
-      element.removeEventListener('mousemove', onMouseMove);
-      element.removeEventListener('mouseleave', onMouseLeave);
+      element.removeEventListener("mousemove", onMouseMove);
+      element.removeEventListener("mouseleave", onMouseLeave);
     };
   }, []);
 

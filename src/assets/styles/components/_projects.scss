@@ -1,0 +1,415 @@
+.container {
+  min-height: 100vh;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+
+  @include respond(desktop) {
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    font-weight: bold;
+    margin: 10px 0 0;
+    font-size: calc(clamp(3.25em, 7vw, 8em) * 0.875);
+    color: $color-white;
+    line-height: 1.2;
+    padding-left: 80px;
+
+    &::before {
+      content: "►";
+      font-size: clamp(0.65em, 2vw, 50em);
+      margin-right: 20px;
+      color: $color-blue;
+    }
+
+    &::after {
+      margin-left: 20px;
+      content: "";
+      display: block;
+      position: relative;
+      width: 300px;
+      height: 1px;
+      background-color: $color-gray-line;
+    }
+
+    @include respond(phone) {
+      align-items: center;
+      justify-content: flex-end;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      &::before {
+        content: "";
+        width: 300px;
+        height: 1px;
+        background-color: $color-gray-line;
+        margin-right: 20px;
+      }
+
+      &::after {
+        content: "►";
+        font-size: clamp(0.65em, 2vw, 50em);
+        margin-left: 20px;
+        color: $color-blue;
+        transform: scale(-1);
+        height: auto;
+        width: auto;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .projects-progress {
+    top: 10px;
+    position: sticky;
+    text-align: center;
+    font-size: clamp(1.5em, 5vw, 2em);
+    margin-bottom: 200px;
+    z-index: 6;
+
+    @include respond(phone) {
+      margin-bottom: 100px;
+    }
+
+    .progress-bar {
+      margin-bottom: -4px;
+      border-bottom: 4px solid black;
+      will-change: transform, border-bottom-color;
+      width: 100%;
+      background-color: transparent;
+    }
+  }
+
+  .svg-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 5px;
+    padding-bottom: 15px;
+
+    .icon-wrapper {
+      width: 100%;
+      max-width: 50px;
+
+      svg {
+        width: 100%;
+        height: auto;
+        filter: grayscale(100%);
+
+        &:hover {
+          filter: none;
+        }
+      }
+    }
+  }
+}
+
+.project-item {
+  display: grid;
+  position: relative;
+  gap: 10px;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  margin-bottom: 100px;
+
+  @include respond(tabPort) {
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  }
+
+  .project-video {
+    position: relative;
+    grid-column: 1 / 8;
+    grid-area: 1 / 6 / -1 / -1;
+    z-index: 1;
+
+    @include respond(tabLand) {
+      grid-column: 1 / -1;
+      height: 100%;
+      opacity: 0.25;
+    }
+
+    a {
+      vertical-align: middle;
+      position: relative;
+      z-index: 1;
+
+      .flex-col-device {
+        display: block;
+        width: 100%;
+        position: relative;
+
+        .device {
+          filter: saturate(0.6) brightness(50%) sepia(50%) hue-rotate(100deg);
+          transition: all 0.2s;
+
+          &:hover {
+            filter: none;
+          }
+
+          .single-video {
+            position: absolute;
+            overflow: hidden;
+            width: 78.6%;
+            left: 10.7%;
+            top: 2%;
+            z-index: 1;
+
+            &::before {
+              content: "";
+              display: block;
+              padding-top: 62.5%;
+            }
+
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+            }
+          }
+
+          .overlay-device-image {
+            width: 100%;
+            position: relative;
+
+            &::before {
+              content: "";
+              display: block;
+              padding-top: 57%;
+            }
+
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .project-content {
+    position: relative;
+    grid-area: 1 / 1 / -1 / 7;
+    text-align: left;
+
+    @include respond(tabLand) {
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      justify-content: center;
+      height: 100%;
+      grid-column: 5 / -1;
+      z-index: 5;
+    }
+
+    @include respond(tabPort) {
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      justify-content: center;
+      height: 100%;
+      grid-column: 1 / -1;
+      z-index: 5;
+      padding: 40px 40px 30px;
+      background-color: #172333df;
+    }
+
+    .project-overline {
+      color: $color-blue;
+      margin: 10px 0 0;
+    }
+
+    .project-title {
+      font-size: clamp(24px, 5vw, 28px);
+      margin: 0 0 20px;
+      color: $color-white;
+
+      a {
+        font-weight: bold;
+        transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+        &:hover {
+          color: $color-blue;
+        }
+      }
+    }
+
+    .project-description {
+      font-weight: 300;
+      line-height: normal;
+      padding: 25px;
+      color: $color-lightgray;
+      z-index: 2;
+      position: relative;
+      border-radius: 4px;
+      background-color: #202735;
+      font-size: 16px;
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+
+      @include respond(tabPort) {
+        padding: 20px 0;
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+
+    .project-list-tech {
+      list-style: none;
+      color: $color-lightgray;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+      margin: 25px 0 10px;
+
+      li {
+        margin: 0 20px 5px 0;
+        white-space: nowrap;
+        font-size: 13px;
+      }
+    }
+
+    .project-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-right: 0px;
+      margin-left: -10px;
+      align-items: center;
+      margin-top: 10px;
+      color: $color-lightgray;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        z-index: 1;
+
+        svg {
+          width: 20px;
+          height: 20px;
+          vertical-align: middle;
+          transition: all 0.2s;
+        }
+
+        &:hover {
+          svg {
+            stroke: $color-blue;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    .project-desc-container {
+      flex-basis: calc(100% - 15px);
+    }
+  }
+}
+
+.featured-projects {
+  list-style: none;
+
+  li {
+    .project-tech-item {
+      color: rgb(0, 217, 255);
+      color: $color-blue;
+      font-weight: 600;
+    }
+  }
+
+  li {
+    &:not(:last-of-type) {
+      margin-bottom: 150px;
+
+      @include respond(tabLand) {
+        margin-bottom: 70px;
+      }
+
+      @include respond(phone) {
+        margin-bottom: 30px;
+      }
+    }
+
+    &:nth-of-type(2n + 1) .project-content {
+      grid-column: 7 / -1;
+      text-align: right;
+
+      @include respond(phone) {
+        padding: 30px 25px 20px;
+      }
+
+      @include respond(tabLand) {
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+        height: 100%;
+        grid-column: 5 / -1;
+        z-index: 5;
+      }
+
+      @include respond(tabPort) {
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+        height: 100%;
+        grid-column: 1 / -1;
+        z-index: 5;
+        text-align: left;
+      }
+    }
+
+    &:nth-of-type(2n + 1) .project-video {
+      grid-column: 1 / 8;
+
+      @include respond(tabLand) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &:nth-of-type(2n + 1) .project-list-tech {
+      justify-content: flex-end;
+
+      @include respond(tabLand) {
+        justify-content: flex-start;
+      }
+
+      li {
+        margin: 0 0 5px 20px;
+
+        @include respond(tabLand) {
+          margin: 0 20px 5px 0;
+        }
+      }
+    }
+
+    &:nth-of-type(2n + 1) .project-links {
+      justify-content: flex-end;
+      margin-right: -10px;
+      margin-left: 0;
+
+      @include respond(tabLand) {
+        justify-content: flex-start;
+        margin-right: 0;
+        margin-left: -10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: #{$phone}) {
+      @content;
+    }
+  }
+  @if $breakpoint == tabPort {
+    @media (max-width: #{$tabPort}) {
+      @content;
+    }
+  }
+  @if $breakpoint == tabLand {
+    @media (max-width: #{$tabLand}) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (min-width: #{$desktop}) {
+      @content;
+    }
+  }
+  @if $breakpoint == bigDesktop {
+    @media (min-width: #{$bigDesktop}) {
+      @content;
+    }
+  }
+}

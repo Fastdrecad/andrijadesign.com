@@ -1,9 +1,10 @@
-import emailjs from "@emailjs/browser";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import RoundedButton from "../rounded-button/RoundedButton";
-import Links from "../sidebar/links/Links";
-import "./contact.scss";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import emailjs from "@emailjs/browser";
+
+import RoundedButton from "../RoundedButton/RoundedButton";
+import Links from "../sidebar/Links/Links";
 
 const Contact = () => {
   const { scrollYProgress } = useScroll({
@@ -14,6 +15,7 @@ const Contact = () => {
   const formRef = useRef();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,6 +63,10 @@ const Contact = () => {
     const formValid = Object.values(errors).every((error) => error === "");
 
     if (formValid) {
+      setIsSending(true);
+      setError(false);
+      setSuccess(false);
+
       emailjs
         .sendForm(
           "service_g788tme",
@@ -70,9 +76,11 @@ const Contact = () => {
         )
         .then(
           (result) => {
+            setIsSending(false);
             setSuccess(true);
           },
           (error) => {
+            setIsSending(false);
             setError(true);
           }
         );
@@ -171,28 +179,24 @@ const Contact = () => {
             )}
             <hr />
 
-            <motion.div style={{ x }} className="btnContent">
-              <RoundedButton customStyle={circleStyle}>
-                <span
-                  style={{
-                    fontSize: "1em",
-                    display: "inline-block",
-                    color: "white"
-                  }}
-                >
-                  <input
-                    type="submit"
-                    name="submit"
-                    value="Send it!"
-                    className="formBtn"
-                  />
-                </span>
-              </RoundedButton>
-            </motion.div>
-            <p style={{ color: "red" }}>{error && "Error"}</p>
-            <p style={{ color: "green" }}>
-              {success && "Your message was successfully sent! "}
-            </p>
+            {!success && (
+              <motion.div style={{ x }} className="btnContent">
+                <RoundedButton customStyle={circleStyle}>
+                  <span className="btn-text">
+                    <input
+                      type="submit"
+                      name="submit"
+                      value={isSending ? "Sending..." : "Send it!"}
+                      className="formBtn"
+                      disabled={isSending}
+                    />
+                  </span>
+                </RoundedButton>
+              </motion.div>
+            )}
+
+            {error && <p style={{ color: "red" }}>Error sending message</p>}
+            {success && <p>Your message was successfully sent!</p>}
           </form>
         </div>
       </div>

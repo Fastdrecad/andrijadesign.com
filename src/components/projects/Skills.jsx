@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import iconsList from '../iconsList';
-import Magnetic from '../magnetic/Magnetic';
+import { useRef, useEffect } from "react";
+
+import { gsap } from "gsap";
+
+import iconsList from "../../assets/icons/iconsList";
 
 const Skills = () => {
   const iconRefs = useRef([]);
@@ -16,8 +17,8 @@ const Skills = () => {
           rotation: index % 2 === 0 ? 360 : -360,
           duration: 2,
           repeat: -1,
-          ease: 'none',
-          transformOrigin: 'center center'
+          ease: "none",
+          transformOrigin: "center center"
         }
       );
 
@@ -34,7 +35,7 @@ const Skills = () => {
             x: x * 0.4,
             y: y * 0.4,
             scale: 1.1,
-            ease: 'power1.out'
+            ease: "power1.out"
           });
         }
       };
@@ -44,16 +45,16 @@ const Skills = () => {
           x: 0,
           y: 0,
           scale: 1,
-          ease: 'power1.out'
+          ease: "power1.out"
         });
       };
 
-      icon.addEventListener('mousemove', onMouseMove);
-      icon.addEventListener('mouseleave', onMouseLeave);
+      icon.addEventListener("mousemove", onMouseMove);
+      icon.addEventListener("mouseleave", onMouseLeave);
 
       return () => {
-        icon.removeEventListener('mousemove', onMouseMove);
-        icon.removeEventListener('mouseleave', onMouseLeave);
+        icon.removeEventListener("mousemove", onMouseMove);
+        icon.removeEventListener("mouseleave", onMouseLeave);
       };
     });
   }, []);
@@ -65,9 +66,9 @@ const Skills = () => {
   };
 
   return (
-    <div className='svg-container'>
+    <div className="svg-container">
       {iconsList.map((icon, index) => (
-        <div className='icon-wrapper' ref={addToRefs} key={icon.id}>
+        <div className="icon-wrapper" ref={addToRefs} key={icon.id}>
           {icon.component()}
         </div>
       ))}

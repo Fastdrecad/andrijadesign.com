@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { useLocation, useNavigate } from "react-router-dom";
-import { navLinks } from "../../config";
+
 import Magnetic from "../magnetic/Magnetic";
 import Sidebar from "../sidebar/Sidebar";
-import "./navbar.scss";
+import { navLinks } from "../../data/navLinks";
 
 const Navbar = () => {
   const location = useLocation();
@@ -65,7 +66,7 @@ const Navbar = () => {
               </li>
             </Magnetic>
           ))}
-          <div className="cv-container">
+          <li className="cv-container">
             <a
               className="cv-button"
               href="/resume.pdf"
@@ -74,7 +75,7 @@ const Navbar = () => {
             >
               CV
             </a>
-          </div>
+          </li>
         </ul>
       </nav>
     </header>

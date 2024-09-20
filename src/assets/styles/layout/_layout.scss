@@ -1,0 +1,74 @@
+/* Box-sizing and general layout rules */
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+/* Layout for body */
+body {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Scrollbar customization */
+html,
+body {
+  ::-webkit-scrollbar {
+    width: 10px; /* Width of the vertical scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: $color-dark; /* Sets the background color of the track to red */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $color-blue; /* Sets the background color of the thumb to blue */
+  }
+}
+
+/* Main element */
+main {
+  overflow: clip;
+  min-height: 100vh;
+  display: block;
+  background-color: $color-dark;
+}
+
+/* Main container layout */
+.main-wrap {
+  width: 100vw;
+  will-change: transform;
+  min-height: 100vh;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5vh;
+    top: 99%;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+/* Specific projects section layout */
+.projects {
+  position: relative;
+  padding-top: clamp(5em, 21vh, 12em);
+  min-height: 100vh;
+  background-color: $color-dark;
+  padding-bottom: 5em;
+  margin-top: -12em;
+}
+
+/* Specific projects section layout */
+#other-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $color-dark;
+  padding: 100px 0;
+}

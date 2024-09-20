@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  height: 70px;
+  padding: 15px;
+  text-align: center;
+  background-color: $color-dark;
+  color: $color-lightgray;
+  font-size: clamp(12px, 3vw, 14px);
+  position: relative;
+  z-index: 1;
+
+  :hover {
+    color: $color-blue;
+  }
+}
