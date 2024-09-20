@@ -6,7 +6,7 @@ import { useSidebar } from "./context/useSidebar";
 import RoutesConfig from "./routes/routes";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
-import Preloader from "./components/preloader/preloader";
+import Preloader from "./components/preloader/Preloader";
 import "./app.scss";
 
 const App = () => {

@@ -1,9 +1,9 @@
-import { AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import Home from '../pages/Home';
-import Archive from '../pages/archive/archive';
-import NotFoundPage from '../pages/not-found-page/NotFoundPage';
+import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Home from "../pages/Home";
+import NotFoundPage from "../pages/not-found-page/NotFoundPage";
+import Archive from "../pages/archive/Archive";
 
 const RoutesConfig = ({ loaded, setLoaded }) => {
   const location = useLocation();
@@ -13,7 +13,7 @@ const RoutesConfig = ({ loaded, setLoaded }) => {
     if (location.state && location.state.scrollToId) {
       const element = document.getElementById(location.state.scrollToId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
 
@@ -29,11 +29,11 @@ const RoutesConfig = ({ loaded, setLoaded }) => {
   }, [location, setLoaded, location.state]);
 
   return (
-    <AnimatePresence mode='wait' initial={false}>
+    <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
-        <Route path='/' element={<Home preloaderActive={loaded} />} />
-        <Route path='/archive' element={<Archive />} />
-        <Route path='/*' element={<NotFoundPage />} />
+        <Route path="/" element={<Home preloaderActive={loaded} />} />
+        <Route path="/archive" element={<Archive />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </AnimatePresence>
   );
