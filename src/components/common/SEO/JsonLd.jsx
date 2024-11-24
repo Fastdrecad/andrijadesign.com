@@ -18,7 +18,7 @@ const JsonLd = ({ pageType, pageData }) => {
           name: "Andrija Mićunović",
           url: "https://www.andrijadesign.com",
           sameAs: [
-            "https://www.linkedin.com/in/andrija-micunovic/",
+            "https://www.linkedin.com/in/andrija-Mićunović/",
             "https://github.com/fastdrecad",
             "https://twitter.com/fastdrecad"
           ]

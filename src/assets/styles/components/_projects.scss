@@ -63,27 +63,6 @@
     }
   }
 
-  .projects-progress {
-    top: 10px;
-    position: sticky;
-    text-align: center;
-    font-size: clamp(1.5em, 5vw, 2em);
-    margin-bottom: 200px;
-    z-index: 6;
-
-    @include respond(phone) {
-      margin-bottom: 100px;
-    }
-
-    .progress-bar {
-      margin-bottom: -4px;
-      border-bottom: 4px solid black;
-      will-change: transform, border-bottom-color;
-      width: 100%;
-      background-color: transparent;
-    }
-  }
-
   .svg-container {
     display: flex;
     align-items: center;
@@ -93,6 +72,7 @@
     padding-right: 1em;
     padding-top: 5px;
     padding-bottom: 15px;
+    margin-bottom: 200px;
 
     .icon-wrapper {
       width: 100%;
@@ -146,6 +126,7 @@
         position: relative;
 
         .device {
+          position: relative;
           filter: saturate(0.6) brightness(50%) sepia(50%) hue-rotate(100deg);
           transition: all 0.2s;
 
@@ -159,7 +140,8 @@
             width: 78.6%;
             left: 10.7%;
             top: 2%;
-            z-index: 1;
+            z-index: 0;
+            pointer-events: none;
 
             &::before {
               content: "";
@@ -177,8 +159,10 @@
           }
 
           .overlay-device-image {
-            width: 100%;
             position: relative;
+            width: 100%;
+            z-index: 1;
+            pointer-events: none;
 
             &::before {
               content: "";

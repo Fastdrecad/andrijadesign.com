@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 import About from "../../components/About/About";
+import JsonLd from "../../components/common/SEO/JsonLd";
+import SEO from "../../components/common/SEO/SEO";
 import Contact from "../../components/Contact/Contact";
 import Header from "../../components/Header/Header";
-import Projects from "../../components/Projects/Projects";
-import SEO from "../../components/common/SEO/SEO";
-import JsonLd from "../../components/common/SEO/JsonLd";
 import OtherProjects from "../../components/OtherProjects/OtherProjects";
+import Projects from "../../components/Projects/Projects";
 
 const Home = () => {
   useDocumentTitle();

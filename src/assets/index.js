@@ -1,14 +1,16 @@
 // Import images
-import laptop from "./images/laptop.png";
-import hero from "./images/hero.webp";
-import goddess from "./images/goddess-within.webp";
 import andrija from "./images/andrija-design.webp";
+import goddess from "./images/goddess-within.webp";
+import hero from "./images/hero.webp";
+import itBridge from "./images/it-bridge.vercel.app.webp";
+import laptop from "./images/laptop.png";
 import horizons from "./images/new-horizon.onrender.webp";
 
 // Export images
 export const laptopImg = laptop;
 export const heroImg = hero;
 export const goddessWithinImage = goddess;
+export const itBridgeImage = itBridge;
 export const newHorizonsImage = horizons;
 export const andrijaImage = andrija;
 

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { BrowserRouter } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
+import { BrowserRouter } from "react-router-dom";
 
 import { useSidebar } from "./context/useSidebar";
 
 import Router from "./routes/Router";
 
+import { AnimatePresence } from "framer-motion";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Preloader from "./components/Preloader/Preloader";

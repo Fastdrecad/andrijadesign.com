@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
-import RoundedButton from "../RoundedButton/RoundedButton";
 import GlobeIcon from "../../assets/icons/GlobeIcon";
+import RoundedButton from "../RoundedButton/RoundedButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -169,7 +169,7 @@ const About = () => {
                     latest tech trends, indulging in my passion for photography,
                     reading, playing basketball, traveling, or cooking.
                   </p>
-                  <br></br>
+                  <br />
 
                   <p>
                     Here are a few technologies I&apos;ve been working with
@@ -177,11 +177,11 @@ const About = () => {
                   </p>
                   <ul className="skills-list">
                     <li>TypeScript</li>
-                    <li>Next.js</li>
+                    <li>Docker</li>
                     <li>PostgreSQL</li>
                     <li>AWS</li>
                     <li>Three.js</li>
-                    <li>Gsap</li>
+                    <li>React Native</li>
                   </ul>
                   <br></br>
                   <p>Let&apos;s build something amazing together!</p>

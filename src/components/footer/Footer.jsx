@@ -8,7 +8,7 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           <div className="footer-content">
-            Design & Built by Andrija Micunovic
+            Design & Built by Andrija Mićunović
           </div>
           <div className="footer-version-released">© 2024</div>
         </a>

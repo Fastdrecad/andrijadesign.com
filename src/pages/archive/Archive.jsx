@@ -5,8 +5,8 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { ExternalIcon, GitHubIcon } from "../../assets/icons";
-import SEO from "../../components/common/SEO/SEO";
 import JsonLd from "../../components/common/SEO/JsonLd";
+import SEO from "../../components/common/SEO/SEO";
 
 import { projects } from "../../data/projects";
 
@@ -30,7 +30,7 @@ const Archive = () => {
         <div className="wrapper">
           <Link to="/" className="inline-link archive-link">
             <FaArrowLeft />
-            Andrija Micunovic
+            Andrija Mićunović
           </Link>
           <h1>All Projects</h1>
           <table>

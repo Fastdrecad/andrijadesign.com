@@ -1,22 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-function useModalVisibility() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+const useModalVisibility = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const header = document.querySelector(".header");
+
     const handleScroll = () => {
-      const aboutElement = document.getElementById('about');
-      if (aboutElement) {
-        const rect = aboutElement.getBoundingClientRect();
-        setIsModalVisible(rect.top <= 0);
+      if (!header) return;
+
+      const headerBottom = header.offsetTop + header.offsetHeight;
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > headerBottom) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  return isModalVisible;
-}
+  return isVisible;
+};
 
 export default useModalVisibility;

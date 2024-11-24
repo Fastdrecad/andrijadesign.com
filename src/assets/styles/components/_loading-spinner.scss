@@ -1,0 +1,25 @@
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 80px;
+
+  .spinner {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .star {
+      position: absolute;
+      color: rgb(0, 217, 255);
+      font-size: 24px;
+      transform-origin: center center;
+      filter: drop-shadow(0 0 2px rgba(0, 217, 255, 0.5));
+      will-change: transform, opacity;
+    }
+  }
+}

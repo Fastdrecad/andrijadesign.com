@@ -1,14 +1,45 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import { laptopImg } from "../../assets";
 import { ExternalIcon, GitHubIcon } from "../../assets/icons";
 
 const PortfolioItem = ({ item, setModal, index }) => {
   const container = useRef(null);
+  const playPromiseRef = useRef(null);
+
+  const handleVideoPlay = useCallback((videoElement) => {
+    if (videoElement) {
+      playPromiseRef.current = videoElement.play();
+      if (playPromiseRef.current !== undefined) {
+        playPromiseRef.current
+          .then(() => {
+            // Video started playing
+          })
+          .catch((error) => {
+            console.log("Playback error:", error);
+          });
+      }
+    }
+  }, []);
+
+  const handleVideoPause = useCallback((videoElement) => {
+    if (videoElement) {
+      if (playPromiseRef.current !== undefined) {
+        playPromiseRef.current
+          .then(() => {
+            videoElement.pause();
+          })
+          .catch((error) => {
+            console.log("Pause error:", error);
+          });
+      } else {
+        videoElement.pause();
+      }
+    }
+  }, []);
 
   return (
     <li className="project-item">
-      {/* image desc */}
       <div className="project-content">
         <>
           <p className="project-overline">Featured Project</p>
@@ -37,7 +68,7 @@ const PortfolioItem = ({ item, setModal, index }) => {
       </div>
 
       <div className="project-video">
-        <a target="_blank" rel="noreferrer" href={item.youtubeUrl}>
+        <a target="_blank" rel="noreferrer" href={item.url}>
           <div className="flex-col-device">
             <div className="device">
               <div
@@ -45,17 +76,21 @@ const PortfolioItem = ({ item, setModal, index }) => {
                 ref={container}
                 onMouseEnter={() => {
                   setModal({ active: true, index: index });
-                  const videoElement = document.getElementById(
-                    `video-${index}`
-                  );
-                  if (videoElement) videoElement.play();
+                  if (item.video) {
+                    const videoElement = document.getElementById(
+                      `video-${index}`
+                    );
+                    handleVideoPlay(videoElement);
+                  }
                 }}
                 onMouseLeave={() => {
                   setModal({ active: false, index: index });
-                  const videoElement = document.getElementById(
-                    `video-${index}`
-                  );
-                  if (videoElement) videoElement.pause();
+                  if (item.video) {
+                    const videoElement = document.getElementById(
+                      `video-${index}`
+                    );
+                    handleVideoPause(videoElement);
+                  }
                 }}
               >
                 <div className="overlay">

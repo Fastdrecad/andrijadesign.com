@@ -1,0 +1,14 @@
+.error {
+  color: red;
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.success {
+  color: $color-blue !important;
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+}
+
+html.no-scroll {
+  touch-action: none;
+  -ms-touch-action: none;
+}

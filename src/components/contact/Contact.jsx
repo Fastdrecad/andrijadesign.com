@@ -1,8 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { motion, useScroll, useTransform } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { motion, useScroll, useTransform } from "framer-motion";
 
+import gsap from "gsap";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import RoundedButton from "../RoundedButton/RoundedButton";
 import Links from "../sidebar/Links/Links";
 
@@ -27,6 +29,118 @@ const Contact = () => {
     email: "",
     message: ""
   });
+
+  useEffect(() => {
+    if (success) {
+      const text = document.querySelector(".success");
+      const message = "✓ Your message was successfully sent!";
+      const words = message.split(" ");
+      text.textContent = "";
+
+      // Create container for each word
+      words.forEach((word, index) => {
+        const wordSpan = document.createElement("span");
+        wordSpan.className = "word";
+
+        [...word].forEach((char) => {
+          const charSpan = document.createElement("span");
+          charSpan.textContent = char;
+          charSpan.className = "char";
+          wordSpan.appendChild(charSpan);
+        });
+
+        text.appendChild(wordSpan);
+        if (index < words.length - 1) {
+          const space = document.createElement("span");
+          space.textContent = " ";
+          space.className = "space";
+          text.appendChild(space);
+        }
+      });
+
+      // Initial positions for words
+      const directions = [
+        { x: -100, y: 0 },
+        { x: 0, y: -100 },
+        { x: 100, y: 0 },
+        { x: 0, y: 100 }
+      ];
+
+      // Main animation sequence
+      const mainTimeline = gsap.timeline();
+
+      // Animate words flying in
+      const wordElements = text.querySelectorAll(".word");
+      wordElements.forEach((word, index) => {
+        const direction = directions[index % directions.length];
+
+        gsap.set(word, {
+          x: direction.x,
+          y: direction.y,
+          opacity: 0
+        });
+
+        mainTimeline.to(
+          word,
+          {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+          },
+          index * 0.15
+        );
+      });
+
+      // After words settle, animate letters
+      mainTimeline.call(
+        () => {
+          const wordElements = text.querySelectorAll(".word");
+          if (!wordElements.length) return;
+
+          // Select one letter from each word
+          wordElements.forEach((word) => {
+            const letters = Array.from(word.querySelectorAll(".char")).filter(
+              (letter) => letter.textContent.trim()
+            );
+
+            if (!letters.length) return;
+
+            // Pick a random letter from this word
+            const letter = letters[Math.floor(Math.random() * letters.length)];
+
+            // Set initial properties
+            gsap.set(letter, {
+              transformOrigin: "center center",
+              transformPerspective: 400
+            });
+
+            // Create unique animation for this letter
+            const duration = gsap.utils.random(1, 2);
+            const delay = gsap.utils.random(0, 0.5);
+            const rotationX = gsap.utils.random([-360, 360]);
+
+            gsap.to(letter, {
+              rotationX: rotationX,
+              y: gsap.utils.random(-10, 10),
+              duration: duration,
+              delay: delay,
+              repeat: 1,
+              yoyo: true,
+              ease: "sine.inOut"
+            });
+          });
+        },
+        null,
+        "+=0.2"
+      );
+    }
+
+    return () => {
+      gsap.killTweensOf(".char, .word");
+    };
+  }, [success]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -132,72 +246,87 @@ const Contact = () => {
           </div>
           <Links />
         </div>
+        {/* <LoadingSpinner /> */}
         <div className="formContainer">
-          <form ref={formRef} onSubmit={sendEmail}>
-            <label>What&apos;s your name?</label>
-            <input
-              type="text"
-              placeholder="John Doe*"
-              required
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-            {errors.name && (
-              <span style={{ color: "red" }} className="error">
-                {errors.name}
-              </span>
-            )}
-            <label>What&apos;s your email?</label>
-            <input
-              type="email"
-              placeholder="john@doe.com*"
-              required
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            {errors.email && (
-              <span style={{ color: "red" }} className="error">
-                {errors.email}
-              </span>
-            )}
+          {error && <p className="error">Error sending message</p>}
+          {isSending && (
+            <motion.div
+              className="sending-container"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <LoadingSpinner />
+            </motion.div>
+          )}
+          {success && (
+            <motion.div
+              className="success-container"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20
+              }}
+            >
+              <p className="success"></p>
+            </motion.div>
+          )}
+          {!success && !isSending && (
+            <form ref={formRef} onSubmit={sendEmail} style={{ width: "100%" }}>
+              <label>What&apos;s your name?</label>
+              <input
+                type="text"
+                placeholder="John Doe*"
+                required
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && <span className="error">{errors.name}</span>}
+              <label>What&apos;s your email?</label>
+              <input
+                type="email"
+                placeholder="john@doe.com*"
+                required
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && <span className="error">{errors.email}</span>}
 
-            <label>Your message</label>
-            <textarea
-              rows={6}
-              placeholder="Message...*"
-              required
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-            />
-            {errors.message && (
-              <span style={{ color: "red" }} className="error">
-                {errors.message}
-              </span>
-            )}
-            <hr />
+              <label>Your message</label>
+              <textarea
+                rows={6}
+                placeholder="Message...*"
+                required
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+              />
+              {errors.message && (
+                <span className="error">{errors.message}</span>
+              )}
+              <hr />
 
-            {!success && (
-              <motion.div style={{ x }} className="btnContent">
-                <RoundedButton customStyle={circleStyle}>
-                  <span className="btn-text">
-                    <input
-                      type="submit"
-                      name="submit"
-                      value={isSending ? "Sending..." : "Send it!"}
-                      className="formBtn"
-                      disabled={isSending}
-                    />
-                  </span>
-                </RoundedButton>
-              </motion.div>
-            )}
-
-            {error && <p style={{ color: "red" }}>Error sending message</p>}
-            {success && <p>Your message was successfully sent!</p>}
-          </form>
+              {!success && !isSending && (
+                <motion.div style={{ x }} className="btnContent">
+                  <RoundedButton customStyle={circleStyle}>
+                    <span className="btn-text">
+                      <input
+                        type="submit"
+                        name="submit"
+                        value={isSending ? "Sending..." : "Send it!"}
+                        className="formBtn"
+                        disabled={isSending}
+                      />
+                    </span>
+                  </RoundedButton>
+                </motion.div>
+              )}
+            </form>
+          )}
         </div>
       </div>
     </motion.div>

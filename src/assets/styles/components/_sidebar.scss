@@ -10,6 +10,13 @@
 }
 
 .header-button-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transform-origin: 60px 60px;
+  -webkit-overflow-scrolling: touch; /* For iOS momentum scrolling */
+
   .bg {
     position: fixed;
     background-color: #1c1d20;
@@ -85,11 +92,11 @@
   height: 70px;
   border-radius: 50%;
   position: fixed;
-  top: 35px;
+  top: 25px;
   left: 25px;
   cursor: pointer;
   color: $color-white;
-  transition: all 0.1s ease;
+
   border: 0.5px solid #727272;
   z-index: 1000;
   background-color: $color-blue;

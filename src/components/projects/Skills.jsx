@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { gsap } from "gsap";
 
@@ -67,7 +67,7 @@ const Skills = () => {
 
   return (
     <div className="svg-container">
-      {iconsList.map((icon, index) => (
+      {iconsList.map((icon) => (
         <div className="icon-wrapper" ref={addToRefs} key={icon.id}>
           {icon.component()}
         </div>

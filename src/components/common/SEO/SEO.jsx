@@ -45,7 +45,7 @@ const SEO = ({
       {/* Social Media Links with rel="me" */}
       <link rel="me" href="https://www.andrijadesign.com" />
       <link rel="me" href="https://www.upwork.com/freelancers/fastdrecad" />
-      <link rel="me" href="https://www.linkedin.com/in/andrija-micunovic/" />
+      <link rel="me" href="https://www.linkedin.com/in/andrija-Mićunović/" />
       <link rel="me" href="https://www.instagram.com/fastdrecad/" />
 
       {/* Favicon */}

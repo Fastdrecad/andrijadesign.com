@@ -1,10 +1,9 @@
+import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 import ReactDOM from "react-dom";
-
-import { motion } from "framer-motion";
-
-import useModalVisibility from "../../hooks/useModalVisibility";
 import { useSidebar } from "../../context/useSidebar";
-
+import useModalVisibility from "../../hooks/useModalVisibility";
+import { lockScroll, unlockScroll } from "../../utils/scrollLock";
 import Links from "./Links/Links";
 import Navigation from "./Navigation/Navigation";
 import ToggleButton from "./ToggleButton/ToggleButton";
@@ -18,49 +17,94 @@ const variants = {
     }
   },
   closed: {
-    clipPath: "circle(35px at 60px 70px)",
+    clipPath: "circle(35px at 60px 60px)",
     transition: {
       delay: 0.15,
       type: "spring",
       stiffness: 500,
       damping: 50
     }
-  },
-  exiting: {
-    opacity: 0,
-    transition: { duration: 0.3, ease: "easeInOut" }
   }
 };
 
 const Sidebar = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar();
   const isModalVisible = useModalVisibility();
+  const [portalContainer, setPortalContainer] = React.useState(null);
 
-  return (
-    <>
-      {isModalVisible &&
-        ReactDOM.createPortal(
+  const containerVariants = {
+    hidden: {
+      scale: 0,
+      opacity: 0,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
+      }
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    const container = document.createElement("div");
+    container.className = "modal-container";
+    document.body.appendChild(container);
+    setPortalContainer(container);
+
+    return () => {
+      if (container && container.parentElement) {
+        container.parentElement.removeChild(container);
+      }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (isSidebarOpen) {
+      lockScroll();
+      return () => unlockScroll();
+    }
+  }, [isSidebarOpen]);
+
+  if (!portalContainer) return null;
+
+  return ReactDOM.createPortal(
+    <AnimatePresence>
+      {isModalVisible && (
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={containerVariants}
+          className="header-button-container"
+        >
+          {isSidebarOpen && (
+            <div className="background" onClick={toggleSidebar}></div>
+          )}
           <motion.div
+            className="bg"
+            variants={variants}
             animate={isSidebarOpen ? "open" : "closed"}
-            className="header-button-container"
           >
-            {isSidebarOpen && (
-              <div className="background" onClick={toggleSidebar}></div>
-            )}
-            <motion.div className="bg" variants={variants}>
-              <div className="nav-inner">
-                <div className="nav-row">
-                  <Navigation />
-                </div>
-                <Links />
+            <div className="nav-inner">
+              <div className="nav-row">
+                <Navigation />
               </div>
-            </motion.div>
-            <ToggleButton isModalVisible={isModalVisible} />
-          </motion.div>,
-
-          document.querySelector(".modal-container")
-        )}
-    </>
+              <Links />
+            </div>
+          </motion.div>
+          <AnimatePresence mode="wait">
+            <ToggleButton key="toggle-button" />
+          </AnimatePresence>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    portalContainer
   );
 };
 

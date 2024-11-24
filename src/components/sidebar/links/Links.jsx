@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 
-import { FaLinkedinIn, FaGithub, FaYoutube, FaFile } from "react-icons/fa6";
+import { FaFile, FaGithub, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
 
 import Magnetic from "../../Magnetic/Magnetic";
 
 const socialLinks = [
   {
     id: 1,
-    href: "https://www.linkedin.com/in/andrija-micunovic/",
+    href: "https://www.linkedin.com/in/andrija-Mićunović/",
     ariaLabel: "Visit Andrija’s LinkedIn profile",
     rel: "noopener noreferrer",
     icon: <FaLinkedinIn />,
