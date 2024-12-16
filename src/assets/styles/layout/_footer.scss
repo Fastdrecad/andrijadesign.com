@@ -13,7 +13,11 @@
   position: relative;
   z-index: 1;
 
-  :hover {
-    color: $color-blue;
+  a {
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $color-blue;
+    }
   }
 }

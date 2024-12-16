@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { motion } from "framer-motion";
 
 const backOp = {
@@ -30,14 +28,6 @@ const pathVariants = {
 };
 
 const Preloader = ({ active }) => {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
   return (
     <motion.div
       key="preloader"

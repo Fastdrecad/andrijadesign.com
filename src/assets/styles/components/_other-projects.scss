@@ -1,4 +1,4 @@
-.other-projects {
+.other-projects-container {
   color: $color-white;
   max-width: 1000px;
   text-align: center;
@@ -91,28 +91,26 @@
     cursor: default;
     list-style: none;
     transition: transform 0.2s;
-
-    &:hover {
-      transform: translateY(-10px);
-    }
+    isolation: isolate;
 
     .project-inner {
+      position: relative;
+      z-index: 1;
+      background-color: rgb(34, 35, 35);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       font-weight: 300;
       line-height: normal;
       color: $color-lightgray;
-      z-index: 2;
-      border-radius: 4px;
       font-size: 16px;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
       align-items: flex-start;
-      position: relative;
       height: 100%;
       padding: 2rem 1.75rem;
       overflow: auto;
       transition: transform 0.2s;
-      background-color: #222323;
 
       &:hover {
         box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);

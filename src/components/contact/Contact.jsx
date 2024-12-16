@@ -225,29 +225,29 @@ const Contact = () => {
 
   return (
     <motion.div className="contact">
-      <h2>Contact</h2>
-      <div className="wrapper">
-        <div className="text-container">
-          <div className="item">
-            <h3>Mail</h3>
-            <a href="mailto:andrijas.micun@gmail.com">
+      <h2 className="contact__title">Contact</h2>
+      <div className="contact__wrapper">
+        <div className="contact__info">
+          <div className="contact__item">
+            <h3 className="contact__label">Mail</h3>
+            <a href="mailto:andrijas.micun@gmail.com" className="contact__link">
               andrijas.micun@gmail.com
             </a>
           </div>
-          <div className="item">
-            <h3>Location</h3>
-            <span>Serbia</span>
+          <div className="contact__item">
+            <h3 className="contact__label">Location</h3>
+            <span className="contact__text">Serbia</span>
           </div>
-          <div className="item">
-            <h3>Phone</h3>
-            <a href="tel:+38162776979" aria-label="Call +381 62 77 69 79">
+          <div className="contact__item">
+            <h3 className="contact__label">Phone</h3>
+            <a href="tel:+38162776979" className="contact__link">
               +381 62 77 69 79
             </a>
           </div>
           <Links />
         </div>
         {/* <LoadingSpinner /> */}
-        <div className="formContainer">
+        <div className="contact__form">
           {error && <p className="error">Error sending message</p>}
           {isSending && (
             <motion.div
@@ -275,56 +275,72 @@ const Contact = () => {
           )}
           {!success && !isSending && (
             <form ref={formRef} onSubmit={sendEmail} style={{ width: "100%" }}>
-              <label>What&apos;s your name?</label>
-              <input
-                type="text"
-                placeholder="John Doe*"
-                required
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              {errors.name && <span className="error">{errors.name}</span>}
-              <label>What&apos;s your email?</label>
-              <input
-                type="email"
-                placeholder="john@doe.com*"
-                required
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-              {errors.email && <span className="error">{errors.email}</span>}
+              <div className="contact__form-group">
+                <label className="contact__form-label">
+                  What&apos;s your name?
+                </label>
+                <input
+                  className="contact__form-input"
+                  type="text"
+                  placeholder="John Doe*"
+                  required
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                {errors.name && (
+                  <span className="contact__form-error">{errors.name}</span>
+                )}
+              </div>
 
-              <label>Your message</label>
-              <textarea
-                rows={6}
-                placeholder="Message...*"
-                required
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-              />
-              {errors.message && (
-                <span className="error">{errors.message}</span>
-              )}
-              <hr />
+              <div className="contact__form-group">
+                <label className="contact__form-label">
+                  What&apos;s your email?
+                </label>
+                <input
+                  className="contact__form-input"
+                  type="email"
+                  placeholder="john@doe.com*"
+                  required
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                {errors.email && (
+                  <span className="contact__form-error">{errors.email}</span>
+                )}
+              </div>
 
-              {!success && !isSending && (
-                <motion.div style={{ x }} className="btnContent">
+              <div className="contact__form-group">
+                <label className="contact__form-label">Your message</label>
+                <textarea
+                  className="contact__form-input"
+                  placeholder="Message...*"
+                  required
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                />
+                {errors.message && (
+                  <span className="contact__form-error">{errors.message}</span>
+                )}
+              </div>
+
+              <div className="contact__form-footer">
+                <hr className="contact__form-divider" />
+                <div className="contact__form-button">
                   <RoundedButton customStyle={circleStyle}>
-                    <span className="btn-text">
+                    <span className="contact__button-text">
                       <input
                         type="submit"
-                        name="submit"
                         value={isSending ? "Sending..." : "Send it!"}
-                        className="formBtn"
+                        className="contact__button-input"
                         disabled={isSending}
                       />
                     </span>
                   </RoundedButton>
-                </motion.div>
-              )}
+                </div>
+              </div>
             </form>
           )}
         </div>

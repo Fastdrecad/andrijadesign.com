@@ -14,8 +14,8 @@ export const projects = [
     year: 2024,
     featured: true,
     id: 6,
-    url: "https://it-bridge.vercel.app/",
-    youtubeUrl: "https://it-bridge.vercel.app/",
+    url: "https://itbridge-services.com",
+    youtubeUrl: "https://itbridge-services.com",
     gitHubUrl: "https://github.com/Fastdrecad/it-bridge",
     title: "IT Bridge Services",
     video: "",
@@ -28,6 +28,7 @@ export const projects = [
       "Tailwind CSS",
       "Figma",
       "GoogleMaps API",
+      "MailerLite API",
       "Calendly API"
     ]
   },

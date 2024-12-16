@@ -74,6 +74,10 @@
     padding-bottom: 15px;
     margin-bottom: 200px;
 
+    @include respond(phone) {
+      margin-bottom: 100px;
+    }
+
     .icon-wrapper {
       width: 100%;
       max-width: 50px;
@@ -141,7 +145,6 @@
             left: 10.7%;
             top: 2%;
             z-index: 0;
-            pointer-events: none;
 
             &::before {
               content: "";
@@ -187,6 +190,7 @@
     position: relative;
     grid-area: 1 / 1 / -1 / 7;
     text-align: left;
+    border-radius: 12px;
 
     @include respond(tabLand) {
       display: flex;
@@ -241,6 +245,7 @@
       background-color: #202735;
       font-size: 16px;
       box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+      border-radius: 12px;
 
       @include respond(tabPort) {
         padding: 20px 0;

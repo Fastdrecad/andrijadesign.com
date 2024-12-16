@@ -9,8 +9,9 @@ import Router from "./routes/Router";
 
 import { AnimatePresence } from "framer-motion";
 import Footer from "./components/Footer/Footer";
+import MouseGlow from "./components/MouseGlow/MouseGlow";
 import Navbar from "./components/Navbar/Navbar";
-import Preloader from "./components/Preloader/Preloader";
+import Preloader from "./components/preloader/Preloader";
 
 const App = () => {
   const { isSidebarOpen } = useSidebar();
@@ -47,16 +48,19 @@ const App = () => {
   }, [isSidebarOpen]);
 
   return (
-    <main id="layout">
-      <BrowserRouter>
-        <AnimatePresence mode="wait">
-          {loaded && <Preloader active={loaded} setActive={setLoaded} />}
-        </AnimatePresence>
-        <Navbar loaded={loaded} setLoaded={setLoaded} />
-        <Router loaded={loaded} setLoaded={setLoaded} />
-        <Footer />
-      </BrowserRouter>
-    </main>
+    <>
+      <MouseGlow />
+      <main id="layout">
+        <BrowserRouter>
+          <AnimatePresence mode="wait">
+            {loaded && <Preloader active={loaded} setActive={setLoaded} />}
+          </AnimatePresence>
+          <Navbar loaded={loaded} setLoaded={setLoaded} />
+          <Router loaded={loaded} setLoaded={setLoaded} />
+          <Footer />
+        </BrowserRouter>
+      </main>
+    </>
   );
 };
 

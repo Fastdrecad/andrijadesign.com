@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { navLinks } from "../../data/navLinks";
 import Magnetic from "../magnetic/Magnetic";
 import Sidebar from "../sidebar/Sidebar";
-import { navLinks } from "../../data/navLinks";
 
 const Navbar = () => {
   const location = useLocation();

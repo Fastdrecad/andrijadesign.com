@@ -70,39 +70,47 @@ const PortfolioItem = ({ item, setModal, index }) => {
       <div className="project-video">
         <a target="_blank" rel="noreferrer" href={item.url}>
           <div className="flex-col-device">
-            <div className="device">
-              <div
-                className="single-video"
-                ref={container}
-                onMouseEnter={() => {
-                  setModal({ active: true, index: index });
-                  if (item.video) {
-                    const videoElement = document.getElementById(
-                      `video-${index}`
-                    );
-                    handleVideoPlay(videoElement);
-                  }
-                }}
-                onMouseLeave={() => {
-                  setModal({ active: false, index: index });
-                  if (item.video) {
-                    const videoElement = document.getElementById(
-                      `video-${index}`
-                    );
-                    handleVideoPause(videoElement);
-                  }
-                }}
-              >
+            <div
+              className="device"
+              onMouseEnter={() => {
+                setModal({ active: true, index: index });
+                if (item.video) {
+                  const videoElement = document.getElementById(
+                    `video-${index}`
+                  );
+                  handleVideoPlay(videoElement);
+                }
+              }}
+              onMouseLeave={() => {
+                setModal({ active: false, index: index });
+                if (item.video) {
+                  const videoElement = document.getElementById(
+                    `video-${index}`
+                  );
+                  handleVideoPause(videoElement);
+                }
+              }}
+            >
+              <div className="single-video">
                 <div className="overlay">
-                  <video
-                    className="overlay"
-                    id={`video-${index}`}
-                    playsInline
-                    preload="auto"
-                    muted
-                  >
-                    <source src={item.video} type="video/mp4" />
-                  </video>
+                  {item.video ? (
+                    <video
+                      className="overlay"
+                      id={`video-${index}`}
+                      playsInline
+                      preload="auto"
+                      muted
+                    >
+                      <source src={item.video} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <img
+                      style={{ objectFit: "cover", objectPosition: "top" }}
+                      className="overlay"
+                      src={item.image}
+                      alt={item.title}
+                    />
+                  )}
                 </div>
               </div>
               <div className="overlay-device-image">

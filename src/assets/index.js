@@ -2,7 +2,7 @@
 import andrija from "./images/andrija-design.webp";
 import goddess from "./images/goddess-within.webp";
 import hero from "./images/hero.webp";
-import itBridge from "./images/it-bridge.vercel.app.webp";
+import itBridge from "./images/itbridge-services.com.webp";
 import laptop from "./images/laptop.png";
 import horizons from "./images/new-horizon.onrender.webp";
 

@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Projects = () => {
   const [modal, setModal] = useState({ active: false, index: 0 });
   const projectsRef = useRef(null);
-  const containerRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -49,7 +48,7 @@ const Projects = () => {
     .slice(0, 4);
 
   return (
-    <section className="container">
+    <div className="container">
       <h2>Projects</h2>
       <Skills />
 
@@ -65,7 +64,7 @@ const Projects = () => {
           />
         ))}
       </ul>
-    </section>
+    </div>
   );
 };
 

@@ -1,21 +1,13 @@
 .contact {
-  min-height: 80vh;
+  min-height: calc(100vh - 70px);
   margin: auto;
   background-color: $color-dark;
-  padding-left: $container-padding;
-  padding-right: $container-padding;
+  padding: $container-padding 150px;
   overflow: hidden;
-  padding-bottom: 150px;
   position: relative;
   color: $color-white;
 
-  @include respond(tabPort) {
-    flex-direction: column;
-    padding-left: calc(($container-padding) / 2);
-    padding-right: calc(($container-padding) / 2);
-  }
-
-  h2 {
+  &__title {
     display: flex;
     align-items: center;
     position: relative;
@@ -23,7 +15,6 @@
     font-weight: bold;
     margin: 10px 0 0;
     font-size: calc(clamp(3.25em, 7vw, 8em) * 0.875);
-    color: $color-white;
     line-height: 1.2;
     padding-left: 80px;
 
@@ -33,260 +24,175 @@
       margin-right: 20px;
       color: $color-blue;
     }
-
-    &::after {
-      margin-left: 20px;
-      content: "";
-      display: block;
-      position: relative;
-      width: 300px;
-      height: 1px;
-      background-color: $color-gray-line;
-    }
-
-    @include respond(phone) {
-      align-items: center;
-      justify-content: flex-end;
-      padding-left: 20px;
-      padding-right: 20px;
-
-      &::before {
-        content: "";
-        width: 300px;
-        height: 1px;
-        background-color: $color-gray-line;
-        margin-right: 20px;
-      }
-
-      &::after {
-        content: "►";
-        font-size: clamp(0.65em, 2vw, 50em);
-        margin-left: 20px;
-        color: $color-blue;
-        transform: scale(-1);
-        height: auto;
-        width: auto;
-        background-color: transparent;
-      }
-    }
   }
 
-  .wrapper {
+  &__wrapper {
     margin-top: 5em;
-    padding-left: $gap-padding;
-    padding-right: $gap-padding;
+    padding: 0 $gap-padding;
     width: 100%;
     display: flex;
     gap: 50px;
     justify-content: space-between;
-    align-items: flex-start;
+  }
 
-    @include respond(tabPort) {
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  &__label {
+    font-weight: 400;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: $color-gray;
+  }
+
+  &__link,
+  &__text {
+    font-size: 1em;
+    font-weight: 500;
+  }
+
+  &__form {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-group {
+      position: relative;
+      // margin-bottom: 1em;
+      min-height: 150px;
+    }
+
+    &-label {
+      font-size: 1.2em;
+      padding: calc(($gap-padding) / 2) 0 0;
+      border-top: 1px solid $color-gray-line;
+      display: block;
+    }
+
+    &-input {
       width: 100%;
-      flex-direction: column;
-      padding-left: calc(($container-padding) / 6);
-      padding-right: calc(($container-padding) / 6);
+      padding: 1em 0 1em 30px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: $color-white;
+      resize: none;
     }
 
-    @include respond(phone) {
-      text-align: right;
+    &-error {
+      position: absolute;
+      bottom: 0;
+      left: 30px;
+      color: $color-red;
+      font-size: 0.85em;
     }
 
-    .text-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      justify-content: start;
-      gap: 2em;
-
-      @include respond(phone) {
-        align-items: flex-end;
-      }
-
-      a {
-        font-size: 1em;
-        font-weight: 500;
-        display: inline-block;
-        position: relative;
-
-        &::after {
-          content: "";
-          display: block;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          height: 1px;
-          background-color: $color-blue;
-          width: 0;
-          transition: width 0.3s ease;
-        }
-
-        &:hover {
-          color: $color-blue;
-
-          &::after {
-            width: 100%;
-          }
-        }
-      }
-
-      span {
-        font-size: 1em;
-        font-weight: 500;
-      }
-
-      h3 {
-        font-weight: 400;
-        font-size: 0.8em;
-        text-transform: uppercase;
-        color: $color-gray;
-      }
-
-      @include respond(tabPort) {
-        width: 100%;
-        padding-left: 5em;
-      }
-
-      @include respond(phone) {
-        width: 100%;
-        padding-left: 0.3em;
-      }
+    &-footer {
+      position: relative;
+      width: 100%;
+      margin-top: 2em;
     }
 
-    .formContainer {
-      flex: 1;
+    &-divider {
+      width: 100%;
+      margin: 0;
+      height: 1px;
+      background-color: $color-gray-line;
+      border: none;
+    }
+
+    &-button {
+      position: absolute;
+      top: 0;
+      right: 5%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+  }
+
+  &__button {
+    &-text {
       position: relative;
       display: flex;
-      flex-direction: column;
+      width: 100%;
+      height: 100%;
       align-items: center;
       justify-content: center;
+      font-size: clamp(1em, 1.8vw, 1.2em);
+    }
+
+    &-input {
+      position: relative;
       height: 100%;
       width: 100%;
-      min-height: 300px;
+      background-color: transparent;
+      margin: 0;
+      color: $color-black;
+      padding: 0;
+      z-index: 50;
+      cursor: pointer;
+      text-align: center;
+      font-size: inherit;
+      border: none;
 
-      .emailSvg {
-        position: absolute;
-        z-index: -1;
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+    }
+  }
 
-        svg {
-          g {
-            path {
-              stroke: $color-blue;
-            }
-          }
-        }
+  @include respond(tabPort) {
+    padding: 0 calc($container-padding / 2) 150px;
+
+    &__wrapper {
+      flex-direction: column;
+      padding: 0 calc($gap-padding / 6);
+    }
+
+    &__info {
+      padding-left: 5em;
+    }
+  }
+
+  @include respond(phone) {
+    &__title {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    &__info {
+      padding-left: 0.3em;
+      align-items: flex-end;
+    }
+
+    &__form {
+      &-input {
+        text-align: left;
+        padding-right: 30px;
+        padding-left: 0;
       }
 
-      form {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-
-        label {
-          font-size: 1.2em;
-          padding: calc(($gap-padding) / 2) 0 0;
-          border-top: 1px solid $color-gray-line;
-        }
-
-        input,
-        textarea {
-          padding: 1em 0 2em 0;
-          background-color: transparent;
-          font-size: 1.4em;
-          border: none;
-          padding-left: 30px;
-          outline: none;
-          color: white;
-
-          @include respond(phone) {
-            text-align: right;
-            padding-right: 30px;
-            padding-left: 0;
-          }
-        }
-
-        textarea {
-          resize: none;
-        }
-
-        hr {
-          width: 100%;
-          margin: 0;
-          height: 1px;
-          background-color: $color-gray-line;
-          border: none;
-        }
-
-        .btnContent {
-          position: absolute;
-          bottom: -5em;
-          right: 20em;
-
-          .btn-text {
-            position: relative;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(1em, 1.8vw, 1.2em);
-
-            .formBtn {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 100%;
-              width: 100%;
-              background-color: transparent;
-              margin: 0;
-              color: $color-black;
-              padding: 0;
-              z-index: 50;
-              cursor: pointer;
-              text-align: center;
-              font-size: inherit;
-            }
-          }
-        }
-
-        :last-child {
-          color: $color-blue;
-        }
+      &-error {
+        right: 30px;
+        left: auto;
+        text-align: left;
       }
 
-      @include respond(tabPort) {
-        width: 100%;
-        padding-left: 0 5em;
-      }
-
-      @include respond(phone) {
-        width: 100%;
-        padding-left: 0.3em;
-      }
-
-      .success {
-        animation: bounce 1s ease backwards;
-        color: #4bb543;
-        font-size: 1.2em;
-        text-align: center;
-      }
-
-      .sending-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 200px;
-
-        p {
-          color: rgb(0, 217, 255);
-          font-size: 1.2em;
-        }
+      &-button {
+        right: 20px;
       }
     }
   }
@@ -314,7 +220,7 @@
   perspective: 1000px;
 
   .success {
-    color: #4bb543;
+    color: $color-green;
     font-size: 1.2em;
 
     .word {

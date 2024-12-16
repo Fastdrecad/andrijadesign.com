@@ -9,9 +9,12 @@ import JsonLd from "../../components/common/SEO/JsonLd";
 import SEO from "../../components/common/SEO/SEO";
 
 import { projects } from "../../data/projects";
+import useNavigation from "../../hooks/useNavigation";
 
 const Archive = () => {
   useDocumentTitle();
+
+  const { handleLinkClick } = useNavigation();
 
   return (
     <>
@@ -28,7 +31,11 @@ const Archive = () => {
 
       <div className="archive container">
         <div className="wrapper">
-          <Link to="/" className="inline-link archive-link">
+          <Link
+            to="/"
+            className="inline-link archive-link"
+            onClick={(e) => handleLinkClick(e, "/")}
+          >
             <FaArrowLeft />
             Andrija Mićunović
           </Link>

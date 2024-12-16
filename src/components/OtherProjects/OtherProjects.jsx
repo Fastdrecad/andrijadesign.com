@@ -17,7 +17,7 @@ const OtherProjects = () => {
   };
 
   return (
-    <div className="other-projects ">
+    <div className="other-projects-container">
       <h2>Other Projects</h2>
       <Link className="inline-link archive-link" to="/archive">
         <span>view the archive</span>
